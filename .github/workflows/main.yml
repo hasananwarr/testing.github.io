@@ -23,16 +23,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - name: Notify Slack
-        uses: Ilshidur/action-slack@2.0.2
-        with:
-            status: ${{ job.status }}
-            fields: repo,message,commit,author,action,eventName
-        
-        env:
-             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    - name: Get file link
+      id: get_file_link
+      run: |
+        echo "::set-output name=file_link::$(echo https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_SHA/path/to/file)"
+    - name: Notify Slack
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      with:
+        args: >-
+          {
+            "text": "A new push has been made to the repository, the file link is: ${{ steps.get_file_link.outputs.file_link }}",
+          }
+
+
+
 
 
 
