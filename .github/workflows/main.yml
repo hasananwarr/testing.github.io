@@ -29,7 +29,7 @@ jobs:
         uses: Ilshidur/action-slack@2.0.2
         with:
             status: ${{ job.status }}
-            fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+            fields: repo,message,commit,author,action,eventName
         
         env:
              SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
