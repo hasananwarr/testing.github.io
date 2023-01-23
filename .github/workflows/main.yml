@@ -26,7 +26,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Notify Slack
-        uses: slack-actions/slack-notify@v1
+        uses: Ilshidur/action-slack@2.0.2
         env:
              SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
