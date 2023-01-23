@@ -26,7 +26,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - name: Notify Slack
-        uses: rtCamp/action-slack-notify@v2
+        uses: slack-actions/slack-notify@v1
         env:
              SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
@@ -39,16 +39,7 @@ jobs:
                  }
 
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
 
 
 
